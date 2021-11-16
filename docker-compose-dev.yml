@@ -1,0 +1,19 @@
+version: '3.7'
+
+networks:
+  ps_system_network:
+ 
+services:
+  ps_application:
+    image: ${DOCKER_REGISTRY-}application
+    container_name: ps_application
+    build:
+      context: .
+      dockerfile: Application/Dockerfile
+    networks:
+        - ps_system_network
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:5000
+    ports:
+      - 5000:5000

@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Ads\**" />
+    <EmbeddedResource Remove="Ads\**" />
+    <None Remove="Ads\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Boundary\Boundary.csproj" />
+    <ProjectReference Include="..\Domain\Domain.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,40 @@
+version: '3.7'
+
+networks:
+  ps_system_network:
+
+volumes:
+  ps_database_data:
+
+services:
+  ps_application:
+    image: ${DOCKER_REGISTRY-}application
+    container_name: ps_application
+    environment:
+      - 'CONNECTIONSTRINGS__APPLICATIONDATABASE=Host=ps_persistence;Database=ps;Port=5432;Password=admin;User ID=admin;Pooling=true;MaxPoolSize=200;'
+    build:
+      context: .
+      dockerfile: Application/Dockerfile
+    depends_on:
+      - ps_persistence
+    networks:
+      - ps_system_network
+
+  ps_persistence:
+    image: postgres:14.0
+    container_name: ps_dbms
+    environment:
+      - POSTGRES_DB=ps
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=admin
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U admin"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    volumes:
+      - ps_database_data:/var/lib/postgresql/data:delegated
+    ports:
+      - 11000:5432
+    networks:
+      - ps_system_network
