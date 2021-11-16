@@ -12,8 +12,3 @@ services:
       dockerfile: Application/Dockerfile
     networks:
         - ps_system_network
-    environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-      - ASPNETCORE_URLS=http://+:5000
-    ports:
-      - 5000:5000
