@@ -22,6 +22,7 @@ phases:
       - echo Pushing the Docker images...
       #- docker push $REPOSITORY_URI:latest
       #- docker push $REPOSITORY_URI:$IMAGE_TAG
+      - docker-compose -f docker-compose-dev.yml push
       - echo Writing image definitions file...
       - printf '[{"name":"privatni-smjestaj-api","imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
       - cat imagedefinitions.json 
