@@ -22,6 +22,7 @@ namespace Presentation.Controllers
         [HttpGet]
         public async Task<IActionResult> Get(CancellationToken token)
         {
+			return Ok("Succeeded");
             var command = new CreatePropertyAdCommand
             {
                 Title = "New Title",
