@@ -22,7 +22,7 @@ namespace Presentation.Controllers
         [HttpGet]
         public async Task<IActionResult> Get(CancellationToken token)
         {
-			return Ok("Succeeded");
+			return Ok(Environment.GetEnvironmentVariable("CONNECTIONSTRINGS__APPLICATIONDATABASE"));
             var command = new CreatePropertyAdCommand
             {
                 Title = "New Title",
