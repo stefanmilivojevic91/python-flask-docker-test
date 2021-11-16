@@ -5,7 +5,7 @@ networks:
  
 services:
   ps_application:
-    image: 408581281203.dkr.ecr.eu-central-1.amazonaws.com/privatni-smjestaj:latest
+    image: 408581281203.dkr.ecr.eu-central-1.amazonaws.com/privatni-smjestaj
     container_name: ps_application
     build:
       context: .
